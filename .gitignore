@@ -1,0 +1,4 @@
+media/
+images/
+*.DS_Store
+*.sqlite3

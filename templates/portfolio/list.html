@@ -1,0 +1,40 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+    <div class="main">
+        {% include "portfolio/messages.html" %}
+
+        <!-- Categories  -->
+            {% for category in category_list %}
+                <div class="category">
+                <div class="header">
+                    <div class="ltitle">
+                    {# <a href="{% url 'slideshow' category.pk %}">{{ category.title }}</a> ({{ category.images.count }} slides) #}
+                    <h1><a href="{{ category.get_absolute_url }}">{{ category.title }}</a> <small class="normal">({{ category.images.count }}) {% if user.is_authenticated %}
+                        <span class="edit"><a href="{{ category.get_absolute_url }}">edit</a></span>
+                    {% endif %}</small></h1>
+                
+                    </div>
+                    {{ category.description }}
+                </div>
+
+                <ul class="thumbs">
+                    {% for img in category.images.all|slice:":30" %}
+                        <li>
+                            <a href="{{ img.get_absolute_url }}">
+                                <img border="0" alt="" src="{{ img.thumbnail2_url }}" />
+                            </a>
+                        </li>
+                    {% endfor %}
+                    {% if category.images.count > 30 %}
+                        <li>
+                            <a class="more" href="{{ category.get_absolute_url }}">...see all.</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                </div>
+            {% endfor %}
+
+        {% include "portfolio/paginator.html" %}
+    </div>
+{% endblock %}

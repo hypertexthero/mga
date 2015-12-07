@@ -1,0 +1,53 @@
+/* 
+mga.css
+*/
+
+body {
+background:#fff;
+padding:8px 24px 24px !important;
+color:#000;
+font-family:"American Typewriter", Courier, "Courier New", monospace;
+font-size:13px;
+line-height:1.3;
+}
+
+a {color:#03C; text-decoration:underline;}
+div#contentbox a:visited, div#sidebarbox a:visited {color:#360;} /* possible brown: #663 */
+a:hover {text-decoration:none; background:#FF6;}
+a.imglink:hover {border:none; background:none;}
+a:active {color:#f90; border:none;}
+
+h1 {margin:0 0 .25em; font-size:1.8em;}
+h2 {margin:1.5em 0 .25em; font-size:1.2em;}
+p.crumbs {font-size:11px; margin-bottom:2em; color:#999;}
+p.crumbs a {text-decoration:underline; color:#999;}
+code {font:11px "courier,monospaced;" color:#366;}
+ul {list-style:disc; margin-left:1em; padding-left:1em;}
+ul li {line-height:1.5em;}
+ol li ol li {list-style-type:lower-alpha;}
+ol li ol li ol li {list-style-type:lower-roman;}
+ul.thumbs {list-style:none inside;}
+ul.thumbs li {padding:5px; display:inline-block; /*background:#eee;*/ word-break: break-all; white-space: wrap;}
+ul.thumbs.thumbnails li {width:138px;}
+ul.thumbs.thumbnails2 li {width:74px;}
+dt {font-weight:bold;}
+dd {margin-left:0;}
+.tip {color:#666; font-size:0.8em; line-height:0.8em; font-style:normal;}
+.tip a {font-weight:normal;}
+div.columnonehalf {width:45%; float:left; padding-right:3em;}
+div.columnonethird {width:28%; float:left; padding-right:3em;}
+li ul {font-size:0.9em; margin-left:1em;}
+p, li {max-width:100% !important;}
+
+/*div#img-desc img {float:left; margin:0 1em 1em 0;}*/
+img {margin:0 0 1em;}
+.edit {font-weight:normal;}
+.normal {font-weight:normal;}
+.quiet {color:#ccc;}
+h2 {margin:0 0 0.8em;}
+
+div.adminpanel {float:right; color:#ccc;}
+/* =responsive structure ---------------------- */
+@media (max-width: 970px) {
+    img {max-width:100%; height:auto;}
+    }

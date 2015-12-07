@@ -1,0 +1,49 @@
+{% extends "portfolio/base.html" %}
+{% load dbetags %}
+
+{% block content %}
+    <div class="main">
+        <!-- Image -->
+        {% if image.title %}
+            <p class="normal"><a href="/portfolio/category/{{ image.category.id }}/thumbnails/">{{ image.category }}</a></h3>
+            <h1 class="title">{{ image.title }}</h1>
+        {% endif %}
+
+        <div id="img-desc">
+            <img border="0" alt="" src="{{ image.image_url }}" {% if image.width > 800 %} width="800" {% endif %} />
+
+            <div id="edit-view">
+                {% if not view.edit and user.is_authenticated %} <a class="edit" href="?edit=1">edit</a> · <a class="edit" href="/admin/portfolio/image/{{ image.id }}/">edit in admin</a> {% endif %}
+            </div>
+
+                {% if view.edit %}
+            <form id="image" action="" method="post" accept-charset="utf-8">{% csrf_token %}
+                <table id="update-form">
+
+                    <tr>
+                    {% for field in modelform %}
+                        <td>{{ field.label }}</td>
+                    {% endfor %}
+                    </tr>
+
+                    <tr>
+                    {% for field in modelform %}
+                        <td>{{ field }} {{ field.errors }}</td>
+                    {% endfor %}
+                    </tr>
+                </table>
+                <ul><input type="submit" value="Update" /></ul>
+            </form>
+            {% else %}
+                {% if image.description %}
+                    <dl>
+                        <dt>Description:</dt>
+                        <dd>{{ image.description }}</dd>
+                    </dl>
+                {% endif %}
+            {% endif %}
+        </div>
+
+    </div>
+
+{% endblock %}
