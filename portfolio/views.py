@@ -41,9 +41,15 @@ class CategoryView(DetailListFormSetView):
     def get_success_url(self):
         return "%s?%s" % (self.detail_absolute_url(), self.request.GET.urlencode()) # keep page num
 
+class TagMixin(object):
+    def get_context_data(self, kwargs):
+        context = super(TagMixin, self).get_context_data(kwargs)
+        context['tags'] = Tag.objects.all()
+        return context
+
 class TagIndexView(TagMixin, ListView):
     template_name = 'portfolio/tag.html'
-    model = Product
+    model = Image
     paginate_by = 100
     context_object_name = 'images'
 

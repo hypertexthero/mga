@@ -42,7 +42,7 @@ DEFAULT_UNCATEGORIZED_ID = 4
 class Image(BaseModel):
     title       = CharField(max_length=60, blank=True, null=True)
     slug        = SlugField(max_length=255, blank=True)
-    sku = models.CharField(max_length=255, blank=True, null=True)
+    sku         = CharField(max_length=255, blank=True, null=True)
     description = TextField(blank=True, null=True)
     image       = ImageField(upload_to="images/")
     thumbnail1  = ImageField(upload_to="images/", blank=True, null=True)

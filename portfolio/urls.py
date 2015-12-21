@@ -3,7 +3,7 @@ from portfolio.models import *
 from portfolio.views import *
 
 urlpatterns = patterns("portfolio.views",
-    (r'^tag/(?P<slug>[-\w]+)/$', TagIndexView.as_view(), name='tagged'),
+   (r'^tag/(?P<slug>[-\w]+)/$', TagIndexView.as_view(), {}, "tagged"),
    (r"^category/(?P<dpk>\d+)/(?P<show>\S+)/" , CategoryView.as_view(), {}, "category"),
    (r"^category/(?P<dpk>\d+)/"               , CategoryView.as_view(), {}, "category"),
    (r"^add-images/(?P<dpk>\d+)/"          , AddImages.as_view(), {}, "add_images"),
