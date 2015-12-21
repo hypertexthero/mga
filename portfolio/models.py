@@ -10,6 +10,8 @@ from django.core.files import File
 
 from shared.utils import *
 
+from taggit.managers import TaggableManager
+
 link   = "<a href='%s'>%s</a>"
 imgtag = "<img border='0' alt='' src='%s' />"
 
@@ -39,6 +41,8 @@ DEFAULT_UNCATEGORIZED_ID = 4
 
 class Image(BaseModel):
     title       = CharField(max_length=60, blank=True, null=True)
+    slug        = SlugField(max_length=255, blank=True)
+    sku = models.CharField(max_length=255, blank=True, null=True)
     description = TextField(blank=True, null=True)
     image       = ImageField(upload_to="images/")
     thumbnail1  = ImageField(upload_to="images/", blank=True, null=True)
@@ -46,6 +50,7 @@ class Image(BaseModel):
     width       = IntegerField(blank=True, null=True)
     height      = IntegerField(blank=True, null=True)
     category    = ForeignKey(Category, default=DEFAULT_UNCATEGORIZED_ID, related_name="images", blank=True, null=True)
+    tags = TaggableManager()
     created     = DateTimeField(auto_now_add=True)
     modified    = DateTimeField(default=datetime.datetime.now, editable=False)
 
@@ -58,6 +63,9 @@ class Image(BaseModel):
     def get_absolute_url(self):
         return reverse2("image", mfpk=self.pk)
 
+    def __str(self):
+        return self.name
+
     def save(self, *args, **kwargs):
         """Save image dimensions."""
         super(Image, self).save(*args, **kwargs)
@@ -65,6 +73,12 @@ class Image(BaseModel):
         self.width, self.height = img.size
         self.save_thumbnail(img, 1, (128,128))
         self.save_thumbnail(img, 2, (64,64))
+
+        if self.title and not self.slug:
+            self.slug = slugify(self.title)
+
+        if not self.sku:
+            self.sku = self.slug
         self.modified = datetime.datetime.now()
         if self.category is None and self.category == "":
             self.category = DEFAULT_UNCATEGORIZED_ID

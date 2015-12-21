@@ -39,6 +39,12 @@
                     <dl>
                         <dt>Description:</dt>
                         <dd>{{ image.description }}</dd>
+                        <dt>Tags:</dt>
+                        {% load taggit_templatetags2_tags %}
+                        {% get_tags_for_object image as "tags" %}
+                        {% for tag in tags %}
+                            <dd>{{tag}}</dd>
+                        {% endfor %}
                     </dl>
                 {% endif %}
             {% endif %}

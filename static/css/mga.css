@@ -30,7 +30,7 @@ ul.thumbs {list-style:none inside;}
 ul.thumbs li {padding:5px; display:inline-block; /*background:#eee;*/ word-break: break-all; white-space: wrap;}
 ul.thumbs.thumbnails li {width:138px;}
 ul.thumbs.thumbnails2 li {width:74px;}
-dt {font-weight:bold;}
+dt {font-weight:bold; margin-top:1em;}
 dd {margin-left:0;}
 .tip {color:#666; font-size:0.8em; line-height:0.8em; font-style:normal;}
 .tip a {font-weight:normal;}

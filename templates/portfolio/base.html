@@ -28,6 +28,19 @@
         </div>
 
         <div id="content">
+            
+            {% load taggit_templatetags2_tags %}
+            {% get_taglist as tags for 'portfolio.Image' %}
+            <div style="float:right; width:300px;">
+                <h3>Tags</h3>
+                <ul>
+                  {% for tag in tags %}
+                    <li><a href="{% url 'tagged' tag.slug %}">{{ tag }}</a> ({{tag.num_times}})</li>
+                  {% empty %}
+                    <li>No Tags</li>
+                  {% endfor %}
+                </ul>
+            </div>
             {% block content %}{% endblock %}
         </div>
     </div>

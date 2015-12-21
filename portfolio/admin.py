@@ -10,7 +10,7 @@ class ImageAdmin(admin.ModelAdmin):
     search_fields = ["title"]
     list_display = "__unicode__ title category created".split()
     list_filter  = ["category"]
-    fields = ['image', 'title','description', 'category']
+    fields = ['image', 'title','description', 'category', 'tags']
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Image, ImageAdmin)

@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^portfolio/', include('portfolio.urls')),
     url(r'^$', RedirectView.as_view(url='/portfolio/'), name='portfolio'),
+    url(r'^taggit_autosuggest/', include('taggit_autosuggest.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\
   + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

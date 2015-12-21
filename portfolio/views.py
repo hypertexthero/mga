@@ -9,10 +9,11 @@ from mcbv.edit_custom import FormSetView, UpdateView
 
 from shared.utils import *
 
+from taggit.models import Tag
 
 class Main(ListView):
     list_model    = Category
-    paginate_by   = 10
+    paginate_by   = 100
     template_name = "portfolio/list.html"
 
 class SlideshowView(ListRelated):
@@ -28,7 +29,7 @@ class CategoryView(DetailListFormSetView):
     formset_model      = Image
     formset_form_class = ImageForm
     related_name       = "images"
-    paginate_by        = 25
+    paginate_by        = 100
     template_name      = "portfolio/category.html"
 
     def add_context(self):
@@ -40,6 +41,14 @@ class CategoryView(DetailListFormSetView):
     def get_success_url(self):
         return "%s?%s" % (self.detail_absolute_url(), self.request.GET.urlencode()) # keep page num
 
+class TagIndexView(TagMixin, ListView):
+    template_name = 'portfolio/tag.html'
+    model = Product
+    paginate_by = 100
+    context_object_name = 'images'
+
+    def get_queryset(self):
+        return Image.objects.filter(tags__slug=self.kwargs.get('slug'))
 
 class AddImages(DetailView, FormSetView):
     """Add images to a category view."""

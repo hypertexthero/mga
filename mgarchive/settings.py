@@ -37,10 +37,15 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'taggit',
+    'taggit_autosuggest',
+    'taggit_templatetags2',
     'shared',
     'mcbv',
     'portfolio',
 )
+
+TAGGIT_CASE_INSENSITIVE = True
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -106,7 +111,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-# STATIC_ROOT = BASE_DIR + "/static/"
+# STATIC_ROOT = BASE_DIR + "/staticroot/"
 STATIC_URL = '/static/'
 
 # MEDIA_ROOT = BASE_DIR + "/media/"
